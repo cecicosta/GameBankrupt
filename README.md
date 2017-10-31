@@ -11,8 +11,7 @@ com 300 coins cada um. Nesse jogo, o tabuleiro é composto por 20 propriedades e
 um custo de venda, um valor de aluguel, um dono caso já estejam compradas, e seguem uma determinada ordem 
 no tabuleiro. Em Bankrupt, não é possível construir hotéis e nenhuma outra melhoria sobre as propriedades 
 do tabuleiro, por simplicidade do problema. O valor de venda e de aluguel de todas as 20 propriedades são 
-configurados num arquivo de nome gameConfig.txt, que seu programa deve ler e interpretar. Os detalhes sobre 
-a formatação do arquivo se encontram na seção Entrada.
+configurados num arquivo de nome gameConfig.txt, que seu programa deve ler e interpretar.
 
 [Learn Markdown](https://bitbucket.org/ceci_costa/desafiotapps)
 
