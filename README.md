@@ -18,9 +18,11 @@ configurados num arquivo de nome gameConfig.txt, que seu programa deve ler e int
 ### Como fazer o Setup? ###
 
 * Setup: Download ou clone o repositório e abra a solução com Visual Studio 2015 ou superior, com 
-o suporte a C++ instalado. Nenhuma bibliotéca especifica do Visual C++ ou .NET foi utilizada. Em tese a aplicação 
-pode ser compilada com qualquer com compilador que suporte as chamadas especificas de C++11 utilizadas.
+o suporte a C++ instalado. Nenhuma bibliotéca especifica do Visual C++ ou .NET foi utilizada. Em 
+tese a aplicação pode ser compilada com qualquer com compilador que suporte as chamadas especificas 
+de C++11 utilizadas.
+
 Obs: Para compilar em outro ambiente pode ser necessário comentar os #include "stdafx.h", adicionados pelo Visual Studio.
  
-* Dependências : Suporte a chamadas de C++11. Recomendado Visual Studio 2015 com suporte a C++ instalado. 
+* Dependências : Compilador com suporte a chamadas de C++11. Recomendado Visual Studio 2015 com suporte a C++ instalado. 
 * Como executar: Execute a partir do Visual Studio ou executavel criado.
