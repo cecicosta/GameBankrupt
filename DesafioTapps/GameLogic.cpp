@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Property.h"
 
+#include <numeric>
 #include <time.h>
 
 GameLogic::GameLogic()
@@ -26,16 +27,7 @@ void GameLogic::MainLoop()
 		properties = parser.CopyProperties();
 
 		//Create players
-		Player *player1 = new Player(0, Player::Behavior::IMPULSIVE);
-		Player *player2 = new Player(1, Player::Behavior::DEMANDING);
-		Player *player3 = new Player(2, Player::Behavior::CAUTIOUS);
-		Player *player4 = new Player(3, Player::Behavior::RANDOM);
-		players = vector<Player*>{ player1, player2, player3, player4 };
-
-		for each (Player *var in players)
-		{
-
-		}
+		CreatePlayers();
 
 		int rounds = 0;
 		bool victory = false;
@@ -64,9 +56,9 @@ void GameLogic::MainLoop()
 
 				Property* property = properties.at(player->GetCurrentPosition());
 
-				//Play the property rent to the owner
+				//Pay the property rent to the owner
 				if (property->IsSold()) {
-					property->Rent(player, players.at(property->GetOwnerId()));
+					property->Rent(player, GetPlayer(property->GetOwnerId()));
 				}
 				else {
 					//Play behavior
@@ -82,11 +74,36 @@ void GameLogic::MainLoop()
 		}
 
 		Player* winner = SelectWinner();
+
 		//Add to staticstics
+		playersVitories[winner->GetId()]++;
 		roundsPerGame.push_back(rounds);
 
 		ClearGameRound();
 	}
+
+	PrettyPrintStatistics();
+}
+
+
+void GameLogic::CreatePlayers()
+{
+	Player *player1 = new Player(0, Player::Behaviour::IMPULSIVE);
+	Player *player2 = new Player(1, Player::Behaviour::DEMANDING);
+	Player *player3 = new Player(2, Player::Behaviour::CAUTIOUS);
+	Player *player4 = new Player(3, Player::Behaviour::RANDOM);
+	players = vector<Player*>{ player1, player2, player3, player4 };
+	std::random_shuffle(players.begin(), players.end());
+	for each (Player* p in players) {
+		p->AddCash(300);
+	}
+}
+
+
+
+Player* GameLogic::GetPlayer(int id) {
+	vector<Player*>::iterator it = std::find_if(players.begin(), players.end(), [&id](Player *p) {return p->GetId() == id; });
+	return *(it._Ptr);
 }
 
 void GameLogic::RemovePlayerProperties(Player* player)
@@ -102,18 +119,18 @@ void GameLogic::RemovePlayerProperties(Player* player)
 void GameLogic::ApplyPlayerBehaviour(Player* player, Property* property)
 {
 	switch (player->behavior) {
-	case Player::Behavior::IMPULSIVE:
+	case Player::Behaviour::IMPULSIVE:
 		property->Buy(player);
 		break;
-	case Player::Behavior::DEMANDING:
+	case Player::Behaviour::DEMANDING:
 		if (property->GetRentValue() > 50)
 			property->Buy(player);
 		break;
-	case Player::Behavior::CAUTIOUS:
+	case Player::Behaviour::CAUTIOUS:
 		if (player->GetAmountOfCash() - property->GetSellingValue() >= 80)
 			property->Buy(player);
 		break;
-	case Player::Behavior::RANDOM:
+	case Player::Behaviour::RANDOM:
 		if (rand() % 2 == 1)
 			property->Buy(player);
 		break;
@@ -142,7 +159,7 @@ Player* GameLogic::SelectWinner()
 		return winners.at(0);
 	}
 
-	//Select the one with more cash at the end and which position was the prior the next with same cash
+	//Select the one with more cash at the end and which position was prior the next with same cash
 	std::sort(winners.begin(), winners.end(), [](Player* a, Player* b) { return a->GetAmountOfCash() >= b->GetAmountOfCash(); });
 
 	return winners.at(0);
@@ -159,4 +176,37 @@ void GameLogic::ClearGameRound()
 		delete p;
 	}
 	properties.clear();
+}
+
+void GameLogic::PrettyPrintStatistics()
+{
+	//Temporarily create the players to associate they behaviour and ids 
+	CreatePlayers();
+
+	int bestScored = 0;
+	//Print statistics
+	std::cout << "Distribuicao de Vitorias:" << endl;
+	for (int i = 0; i < playersVitories.size(); i++) {
+		std::cout << "Jogador " << Player::GetBehaviourString(GetPlayer(i)->behavior) << ": " << (100 * playersVitories[i]) / numberOfRounds << "%" << endl;
+		bestScored = playersVitories[i] > playersVitories[bestScored] ? i : bestScored;
+	}
+
+	//Players com melhor pontuação
+	std::cout << "Comportamento(s) com Mais Vitorias:" << endl;
+	for (int i = 0; i < playersVitories.size(); i++)
+	{
+		if (playersVitories[bestScored] == playersVitories[i]) {
+			std::cout << Player::GetBehaviourString(GetPlayer(i)->behavior) << endl;
+		}
+	}
+
+	int roundsTimeout = this->roundsTimeout;
+	int numberOfTimeouts = std::count_if(roundsPerGame.begin(), roundsPerGame.end(), [&roundsTimeout](int rounds) {return rounds >= roundsTimeout; });
+	float averageOfRounds = (float)std::accumulate(roundsPerGame.begin(), roundsPerGame.end(), 0) / (float)roundsPerGame.size();
+
+	std::cout << "Media de rodadas por partida: " << averageOfRounds << endl;
+
+	std::cout << "Partidas terminadas com Timeout: " << numberOfTimeouts << endl;
+
+	ClearGameRound();
 }

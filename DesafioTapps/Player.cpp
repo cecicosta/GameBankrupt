@@ -2,7 +2,7 @@
 #include "Player.h"
 
 
-Player::Player(int id, Behavior behavior): cash(0), position(-1)
+Player::Player(int id, Behaviour behavior): cash(0), position(-1)
 {
 	this->behavior = behavior;
 	this->id = id;
@@ -44,5 +44,20 @@ bool Player::Pay(float amount)
 bool Player::IsBankupt()
 {
 	return GetAmountOfCash() < 0;
+}
+
+std::string Player::GetBehaviourString(Behaviour behaviour)
+{
+	switch (behaviour) {
+	case Player::Behaviour::IMPULSIVE:
+		return "Impulsivo";
+	case Player::Behaviour::DEMANDING:
+		return "Exigente";
+	case Player::Behaviour::CAUTIOUS:
+		return "Cauteloso";
+	case Player::Behaviour::RANDOM:
+		return "Aleatorio";
+	}
+	return "Indefinido";
 }
 

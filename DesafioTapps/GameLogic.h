@@ -2,7 +2,6 @@
 #include "ParseBoardValues.h"
 #include "Property.h"
 #include "Player.h"
-#include <functional>
 
 class GameLogic
 {
@@ -17,11 +16,7 @@ private:
 	ParseBoardValues parser;
 
 	//Game Statistics
-	int impulsivePlayerVitories;
-	int demandingPlayerVictories;
-	int causiousPlayerVictories;
-	int randomPlayerVictories;
-
+	vector<int> playersVitories{0,0,0,0};
 	std::vector<int> roundsPerGame;
 
 public:
@@ -29,6 +24,8 @@ public:
 	~GameLogic();
 
 	void MainLoop();
+	void CreatePlayers();
+	Player* GetPlayer(int id);
 	void RemovePlayerProperties(Player*);
 	void ApplyPlayerBehaviour(Player*, Property*);
 	
@@ -36,5 +33,7 @@ public:
 
 	Player* SelectWinner();
 	void ClearGameRound();
+
+	void PrettyPrintStatistics();
 };
 

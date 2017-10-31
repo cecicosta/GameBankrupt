@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class Player {
 private:
 	float cash;
@@ -6,15 +7,15 @@ private:
 	int id;
 public:
 	
-	enum Behavior {
-		IMPULSIVE,
+	enum Behaviour {
+		IMPULSIVE = 0,
 		DEMANDING,
 		CAUTIOUS,
 		RANDOM
 	};
-	Behavior behavior;
+	Behaviour behavior;
 	
-	Player(int id, Behavior behavior);
+	Player(int id, Behaviour behavior);
 
 	int GetId();
 	int GetCurrentPosition();
@@ -24,5 +25,7 @@ public:
 
 	bool Pay(float value);
 	bool IsBankupt();
+
+	static std::string GetBehaviourString(Behaviour behaviour);
 	
 };
