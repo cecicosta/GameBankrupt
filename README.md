@@ -2,7 +2,7 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+### O que há nesse repositório? ###
 
 Considere o seguinte jogo hipotético, que chamaremos de Bankrupt, muito semelhante a Banco Imobiliário
 onde várias de suas mecânicas foram simplificadas. Numa partida desse jogo, os players se alteram em 
@@ -15,11 +15,12 @@ configurados num arquivo de nome gameConfig.txt, que seu programa deve ler e int
 
 [Learn Markdown](https://bitbucket.org/ceci_costa/desafiotapps)
 
-### How do I get set up? ###
+### Como fazer o Setup? ###
 
-* Summary of set up: Download ou clone o repositório e abra a solução com Visual Studio 2015 ou superior, com 
-o suporte a C++/CLI instalado. Nenhuma bibliotéca especifica do Visual C++ ou .NET foi utilizada. Em tese a aplicação 
-pode ser compilada com qualquer compilador que suporte as chamadas especificas de C++11 utilizadas.
-* Configuration: Tenha certeza de que o ambiente de desenvolvimento possui as bibliotecas de para C++ instaladas 
-* Dependencies : C++/CLI para visual studio 2015 ou superior. 
-* How to run tests: Execute a partir do Visual Studio ou executado criado.
+* Setup: Download ou clone o repositório e abra a solução com Visual Studio 2015 ou superior, com 
+o suporte a C++ instalado. Nenhuma bibliotéca especifica do Visual C++ ou .NET foi utilizada. Em tese a aplicação 
+pode ser compilada com qualquer com compilador que suporte as chamadas especificas de C++11 utilizadas.
+Obs: Para compilar em outro ambiente pode ser necessário comentar os #include "stdafx.h", adicionados pelo Visual Studio.
+ 
+* Dependências : Suporte a chamadas de C++11. Recomendado Visual Studio 2015 com suporte a C++ instalado. 
+* Como executar: Execute a partir do Visual Studio ou executavel criado.
