@@ -2,7 +2,7 @@
 #include "Property.h"
 
 
-Property::Property(float sellingValue, float rentValue) : 
+Property::Property(int sellingValue, int rentValue) :
 	sellingValue(sellingValue), rentValue(rentValue), isSold(false), ownerId(-1){ 
 }
 
@@ -10,12 +10,12 @@ Property::Property()
 {
 }
 
-float Property::GetRentValue()
+int Property::GetRentValue()
 {
 	return rentValue;
 }
 
-float Property::GetSellingValue()
+int Property::GetSellingValue()
 {
 	return sellingValue;
 }

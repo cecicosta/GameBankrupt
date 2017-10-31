@@ -13,6 +13,7 @@ private:
 	const int cashPerLap = 100;
 	const int dieFaces = 6;
 	const int roundsTimeout = 1000;
+	const int initialPlayerCash = 300;
 	ParseBoardValues parser;
 
 	//Game Statistics

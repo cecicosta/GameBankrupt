@@ -12,7 +12,7 @@ GameLogic::GameLogic()
 {
 	//Load file:Parse config file
 	parser.Parse();
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 }
 
 GameLogic::~GameLogic()
@@ -95,7 +95,7 @@ void GameLogic::CreatePlayers()
 	players = vector<Player*>{ player1, player2, player3, player4 };
 	std::random_shuffle(players.begin(), players.end());
 	for each (Player* p in players) {
-		p->AddCash(300);
+		p->AddCash(initialPlayerCash);
 	}
 }
 
@@ -180,20 +180,22 @@ void GameLogic::ClearGameRound()
 
 void GameLogic::PrettyPrintStatistics()
 {
+	std::cout << "//////BANKRUPT//////" << endl;
+
 	//Temporarily create the players to associate they behaviour and ids 
 	CreatePlayers();
 
 	int bestScored = 0;
 	//Print statistics
 	std::cout << "Distribuicao de Vitorias:" << endl;
-	for (int i = 0; i < playersVitories.size(); i++) {
+	for (unsigned int i = 0; i < playersVitories.size(); i++) {
 		std::cout << "Jogador " << Player::GetBehaviourString(GetPlayer(i)->behavior) << ": " << (100 * playersVitories[i]) / numberOfRounds << "%" << endl;
 		bestScored = playersVitories[i] > playersVitories[bestScored] ? i : bestScored;
 	}
 
 	//Players com melhor pontuação
 	std::cout << "Comportamento(s) com Mais Vitorias:" << endl;
-	for (int i = 0; i < playersVitories.size(); i++)
+	for (unsigned int i = 0; i < playersVitories.size(); i++)
 	{
 		if (playersVitories[bestScored] == playersVitories[i]) {
 			std::cout << Player::GetBehaviourString(GetPlayer(i)->behavior) << endl;

@@ -13,12 +13,12 @@ int Player::GetId()
 	return id;
 }
 
-void Player::AddCash(float amount)
+void Player::AddCash(int amount)
 {
 	cash += amount;
 }
 
-float Player::GetAmountOfCash()
+int Player::GetAmountOfCash()
 {
 	return cash;
 }
@@ -33,7 +33,7 @@ void Player::SetNewPosition(int position)
 	this->position = position;
 }
 
-bool Player::Pay(float amount)
+bool Player::Pay(int amount)
 {
 	bool enoughCash = cash - amount >= 0;
 	cash = cash - amount;

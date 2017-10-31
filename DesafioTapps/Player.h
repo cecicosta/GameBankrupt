@@ -2,7 +2,7 @@
 #include <string>
 class Player {
 private:
-	float cash;
+	int cash;
 	int position;
 	int id;
 public:
@@ -19,11 +19,11 @@ public:
 
 	int GetId();
 	int GetCurrentPosition();
-	float GetAmountOfCash();
-	void AddCash(float amount);
+	int GetAmountOfCash();
+	void AddCash(int amount);
 	void SetNewPosition(int position);
 
-	bool Pay(float value);
+	bool Pay(int value);
 	bool IsBankupt();
 
 	static std::string GetBehaviourString(Behaviour behaviour);
