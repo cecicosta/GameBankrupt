@@ -1,7 +1,5 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
 ### O que há nesse repositório? ###
 
 Considere o seguinte jogo hipotético, que chamaremos de Bankrupt, muito semelhante a Banco Imobiliário
