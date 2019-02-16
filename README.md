@@ -1,26 +1,8 @@
 # README #
 
-### O que há nesse repositório? ###
+### What is in this repository? ###
 
-Considere o seguinte jogo hipotético, que chamaremos de Bankrupt, muito semelhante a Banco Imobiliário
-onde várias de suas mecânicas foram simplificadas. Numa partida desse jogo, os players se alteram em 
-rodadas, numa ordem definida aleatoriamente no começo da partida. Os players sempre começam uma partida 
-com 300 coins cada um. Nesse jogo, o tabuleiro é composto por 20 propriedades em sequência. Cada casa tem                            
-um custo de venda, um valor de aluguel, um dono caso já estejam compradas, e seguem uma determinada ordem 
-no tabuleiro. Em Bankrupt, não é possível construir hotéis e nenhuma outra melhoria sobre as propriedades 
-do tabuleiro, por simplicidade do problema. O valor de venda e de aluguel de todas as 20 propriedades são 
-configurados num arquivo de nome gameConfig.txt, que seu programa deve ler e interpretar.
+Consider the following hypothetical game, which we will call Bankrupt, very similar to Monopoly where several of its mechanics have been simplified. In a match of that game, the players change in rounds, in an order randomly defined at the beginning of the game. Players always start a match with 300 coins each. In this game, the board consists of 20 properties in sequence. Each house has a cost of sale, a rental value, a owner if they are already purchased, and follow a certain order on the board. In Bankrupt, it is not possible to build hotels and no other improvements on the properties of the board, for simplicity of the problem. The sales and rental value of all 20 properties are configured in a file named gameConfig.txt, which the program reads and interpretate.
+The repository implements the above game logics and simulates a match beetwen random players, each one with a different strategy. 
 
-[Learn Markdown](https://bitbucket.org/ceci_costa/desafiotapps)
-
-### Como fazer o Setup? ###
-
-* Setup: Download ou clone o repositório e abra a solução com Visual Studio 2015 ou superior, com 
-o suporte a C++ instalado. Nenhuma bibliotéca especifica do Visual C++ ou .NET foi utilizada. Em 
-tese a aplicação pode ser compilada com qualquer com compilador que suporte as chamadas especificas 
-de C++11 utilizadas.
-
-Obs: Para compilar em outro ambiente pode ser necessário comentar os #include "stdafx.h", adicionados pelo Visual Studio.
- 
-* Dependências : Compilador com suporte a chamadas de C++11. Recomendado Visual Studio 2015 com suporte a C++ instalado. 
-* Como executar: Execute a partir do Visual Studio ou executavel criado.
+This project is writen with C++ and uses some features from C++11, which is needed to compile.
